@@ -1,0 +1,26 @@
+{
+  "name": "gurus-gestao",
+  "version": "1.0.0",
+  "description": "Conselho de 30 lentes de gestão (Global Gurus 2026) com orquestrador que roteia para o guru certo conforme o problema.",
+  "author": {
+    "name": "Denilson Nogueira",
+    "url": "https://github.com/dmnogueira"
+  },
+  "homepage": "https://github.com/dmnogueira/gurus-gestao",
+  "license": "MIT",
+  "keywords": [
+    "management",
+    "leadership",
+    "strategy",
+    "execution",
+    "change",
+    "people",
+    "gestao",
+    "gurus",
+    "orquestrador"
+  ],
+  "agents": "./agents/",
+  "commands": "./commands/",
+  "skills": "./skills/",
+  "repository": "https://github.com/dmnogueira/gurus-gestao"
+}

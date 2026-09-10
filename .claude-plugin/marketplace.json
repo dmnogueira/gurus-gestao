@@ -1,0 +1,23 @@
+{
+  "name": "gurus-gestao",
+  "owner": {
+    "name": "Denilson Nogueira"
+  },
+  "metadata": {
+    "description": "Conselho de 30 lentes de gestão (Global Gurus 2026) com orquestrador.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "gurus-gestao",
+      "source": "./",
+      "description": "Orquestrador + 30 agentes de gestão. Use /conselho ou /guru.",
+      "version": "1.0.0",
+      "author": { "name": "Conselho de Gurus de Gestão" },
+      "homepage": "https://github.com/dmnogueira/gurus-gestao",
+      "keywords": ["management", "leadership", "strategy", "gestao", "gurus"],
+      "category": "productivity",
+      "strict": true
+    }
+  ]
+}

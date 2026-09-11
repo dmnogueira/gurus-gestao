@@ -1,4 +1,4 @@
-# O mapa, não o pódio
+# O mapa, não a lista de celebridades
 
 Listas como a da Global Gurus seriam lidas quase como um ranking de celebridades. Hoje, elas funcionam mais como um termômetro silencioso de onde a gestão realmente está. Ao olhar para os 30 principais nomes de management do momento, não estamos diante de autores ou palestrantes influentes. Estamos diante de um mapa de ideias que, na prática, moldam como decisões são tomadas dentro das organizações. O mapa mudou.
 
@@ -8,4 +8,4 @@ O que emerge dessa leitura não é trivial. Durante décadas, a gestão orbitou 
 
 No fim, liderança não se mede pelo repertório que você conhece, mas pelos modelos que você incorporou no seu jeito de decidir, priorizar e agir. O ranking, portanto, não é uma lista para admiração. É um espelho.
 
-Este repositório transforma esse espelho em lentes acionáveis: um orquestrador escolhe qual ideia aplicar, e cada agente devolve um artefato — não uma palestra.
+Este plugin trata cada nome como uma **lente** — especialidade, força e modo de uso — não como uma celebridade a impersonar.

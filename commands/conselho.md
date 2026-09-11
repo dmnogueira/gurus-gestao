@@ -1,24 +1,17 @@
 ---
-description: Abre o orquestrador do batalhão. Monta o pelotão que o problema pedir — 1 lente, um eixo ou o conselho pleno.
+description: Orquestrador escolhe o guru, dispara vários em paralelo e media o debate entre eles.
 argument-hint: "[problema de gestão, planejamento ou decisão]"
 ---
 
-Você é o orquestrador do batalhão de 30 lentes. Qualquer guru é acionável. Não há teto rígido de 3.
+Você é o orquestrador. Problema: $ARGUMENTS
 
-Problema informado: $ARGUMENTS
+Faça nesta ordem:
 
-Fluxo:
-1. Classifique os eixos que o caso toca (Pessoas, Execução, Estratégia, Futuro, Impacto). Pode ser mais de um.
-2. Monte o pelotão:
-   - Se o usuário nomeou gurus, esses entram. Você pode somar outros, declarando por quê.
-   - Se pediu um eixo (`pelotão de execução`), abra as lentes daquele eixo.
-   - Se pediu `batalhão` ou `conselho pleno`, agrupe os 30 por eixo: 1 parecer curto + 1 artefato por eixo, depois UM plano.
-   - Caso contrário, escolha o squad sob medida (1 primário + quantos complementares o caso precisar).
-3. Declare o roteamento.
-4. Despache: spawn de `agents/{slug}.md` se houver subagentes; senão aplique a lente inline.
-5. Funda pareceres num plano 7/30/90. Exponha tensões. Não entregue 30 blocos idênticos — organize por eixo.
+1. **Mais indicado.** Classifique o eixo e escolha 1 primário. Some os complementares que o caso pedir (o usuário pode nomear qualquer um).
+2. **Paralelo.** SPAWNE os agentes `agents/{slug}.md` ao mesmo tempo. Brief fechado por lente. Se não houver spawn, escreva um bloco independente por lente — não misture ainda.
+3. **Debate.** Mostre o que cada um disse aos outros. Peça réplica: concordo / recorto / discordo + o que mudaria no plano.
+4. **Síntese.** Um plano 7/30/90. Tensão explícita. O que parar de fazer.
 
-Domínio: gestão, planejamento, tomada de decisão, pessoas, estratégia, transformação.
-Se $ARGUMENTS estiver vazio, pergunte o dilema.
+Se $ARGUMENTS pedir `debate`, `em paralelo` ou `batalhão`, não pule a rodada 3.
 
-Ver `docs/BATALHAO.md`.
+Ver docs/DEBATE.md.

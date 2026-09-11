@@ -1,28 +1,28 @@
-# Instalação detalhada — Gurus de Gestão
+# Instalacao detalhada — Gurus de Gestao
 
-Repositório: https://github.com/dmnogueira/gurus-gestao
+Repositorio: https://github.com/dmnogueira/gurus-gestao
 
-Não existe um único botão que instala o mesmo pacote em ChatGPT, Claude, Grok, Gemini e Codex. O GitHub é a **fonte única**. Cada LLM tem um caminho.
+Plugin no padrao Agent Skills. Nao existe um unico botao que instala em Claude, ChatGPT, Grok e Gemini ao mesmo tempo. O GitHub e a fonte unica.
 
-Depois de instalado, o uso é o mesmo em todos:
+Uso depois de instalar:
 
-- Orquestrado: `conselho: o time cala nas reuniões e a estratégia não sai do slide`
-- Direto: `guru Edmondson: erros escondidos no hospital`
+```text
+conselho: o time nao fala e a estrategia nao sai do slide
+guru Edmondson: erros escondidos no hospital
+```
 
-O orquestrador escolhe 1 lente primária + até 2 complementares e devolve diagnóstico + tensão + plano 7/30/90.
+Catalogo das 30 lentes: [docs/AGENTES.md](./docs/AGENTES.md).
 
-## 1. Claude Code (plugin nativo)
+## 1. Claude Code (plugin de verdade — spawn de subagentes)
 
 ```text
 /plugin marketplace add dmnogueira/gurus-gestao
 /plugin install gurus-gestao@gurus-gestao
 ```
 
-Teste: `/conselho o time entrega pouco e ninguém fala nas retrospectivas`
+Conferir com `/plugin`. Usar `/conselho ...` ou `/guru Kotter ...`.
 
-O plugin carrega `skills/`, `agents/` (31 subagentes) e `commands/` (`/conselho`, `/guru`). No Claude Code o orquestrador spawna os especialistas de verdade.
-
-Instalação local:
+Instalacao local se o marketplace falhar:
 
 ```bash
 git clone https://github.com/dmnogueira/gurus-gestao.git
@@ -32,33 +32,28 @@ cp gurus-gestao/agents/*.md .claude/agents/
 cp gurus-gestao/commands/*.md .claude/commands/
 ```
 
-## 2. Claude.ai (Project)
+## 2. Claude.ai (Project ou Skills)
 
-1. Crie um Project `Conselho de Gurus`.
-2. Instruções: cole `hosts/chatgpt-instructions.md`.
-3. Files: `skills/orquestrador-gurus/SKILL.md`, `references/matriz-roteamento.md`, `docs/AGENTES.md`.
-4. Chat dentro do Project: `conselho: [problema]`.
+1. Projects → New project → `Conselho de Gurus de Gestao`.
+2. Instructions: cole `hosts/system-prompt.md`.
+3. Add files: `skills/orquestrador-gurus/SKILL.md`, `references/matriz-roteamento.md`, `docs/AGENTES.md`.
+4. Se a conta tiver Skills: zip da pasta `skills/orquestrador-gurus/` e upload em Plugins → Skills.
 
-Se a conta aceitar Skills: zip de `skills/orquestrador-gurus/` (com `SKILL.md` na raiz) e faça upload.
+## 3. ChatGPT (Custom GPT / Project / Skills)
 
-## 3. ChatGPT (Custom GPT)
+ChatGPT nao clona GitHub como plugin de Code.
 
-1. Explore GPTs → Create.
+Custom GPT:
+1. Explore GPTs → Create → Configure.
 2. Instructions: cole `hosts/chatgpt-instructions.md`.
-3. Knowledge: `SKILL.md`, `matriz-roteamento.md`, `docs/AGENTES.md`.
-4. Starters: `Conselho: o time está calado e a estratégia não sai do slide`.
+3. Knowledge: `SKILL.md` + `docs/AGENTES.md` + `references/matriz-roteamento.md`.
+4. Starters: `Conselho: o time esta calado e a estrategia nao sai do slide`.
 5. Create e compartilhe o link.
 
-ChatGPT Project (Plus/Team): mesmas instruções e arquivos no Project.
+Project: mesmas instructions + files no Project.
+Skills (workspaces com Plugins → Skills): upload do zip de `skills/orquestrador-gurus/`.
 
-## 4. Grok (xAI)
-
-1. Project no Grok.
-2. Cole `hosts/grok-instructions.md`.
-3. Anexe a skill + matriz + `docs/AGENTES.md`.
-4. Peça: `chame o orquestrador` + o problema.
-
-## 5. Codex
+## 4. Codex
 
 ```bash
 git clone https://github.com/dmnogueira/gurus-gestao.git
@@ -67,34 +62,47 @@ cp -R gurus-gestao/skills/orquestrador-gurus ~/.agents/skills/
 cp gurus-gestao/AGENTS.md ./AGENTS.md
 ```
 
-Se houver plugin manager:
+Ou:
 
 ```text
 codex plugin marketplace add dmnogueira/gurus-gestao
 codex plugin add gurus-gestao
 ```
 
-## 6. Cursor
+## 5. Cursor
 
 ```bash
-cp gurus-gestao/AGENTS.md ./AGENTS.md
-mkdir -p .agents/skills .cursor/skills
-cp -R gurus-gestao/skills/orquestrador-gurus .agents/skills/
-cp -R gurus-gestao/skills/orquestrador-gurus .cursor/skills/
+git clone https://github.com/dmnogueira/gurus-gestao.git
+mkdir -p .cursor/skills .agents/skills
+cp -R skills/orquestrador-gurus .cursor/skills/
+cp -R skills/orquestrador-gurus .agents/skills/
 ```
 
-## 7. Gemini Gem / Copilot / outros
+O `AGENTS.md` na raiz obriga o modelo a rotear.
 
-Mesmo padrão do ChatGPT: instruções de `hosts/chatgpt-instructions.md` + Knowledge (`AGENTES.md` + matriz + skill).
+## 6. Grok (xAI)
 
-## Checklist
+Nao ha marketplace publico equivalente.
+1. Project no Grok → cole `hosts/grok-instructions.md`.
+2. Anexe `SKILL.md`, `docs/AGENTES.md`, `matriz-roteamento.md`.
+3. `Conselho: <problema>`.
 
-| Ferramenta | Aponta o repo? | Como chama |
+## 7. Gemini Gem
+
+1. Gems → New Gem.
+2. Instructions: `hosts/system-prompt.md`.
+3. Knowledge: `docs/AGENTES.md` + `SKILL.md` + matriz.
+
+## O que cada host faz de verdade
+
+| Ferramenta | Instala pasta? | Como o orquestrador chama o guru |
 |---|---|---|
-| Claude Code | `/plugin marketplace add dmnogueira/gurus-gestao` | `/conselho` `/guru` |
-| Codex | plugin add ou clone | `$orquestrador-gurus` |
-| Cursor | clone + AGENTS.md | `conselho:` |
-| Claude.ai | não | Project + `conselho:` |
-| ChatGPT | não | Custom GPT + `conselho:` |
-| Grok | não | `chame o orquestrador` |
-| Gemini | não | Gem + `conselho:` |
+| Claude Code | Sim, plugin | Spawn real de `agents/*.md` |
+| Codex / Cursor | Skill + AGENTS.md | Veste a lente no mesmo contexto |
+| ChatGPT Custom GPT | Upload manual | Protocolo no mesmo turno |
+| Claude.ai Project | Upload manual | Protocolo no mesmo turno |
+| Grok / Gemini | Instructions + files | Protocolo no mesmo turno |
+
+v1 entrega artefatos (plano 7/30/90, canvas, 8 passos). Nao acessa Jira/ERP.
+
+Teste: `Conselho: 40 projetos, time exausto, ninguem fala de risco` — esperado Nieto-Rodriguez + Crenshaw + Edmondson.
